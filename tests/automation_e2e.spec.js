@@ -1,3 +1,5 @@
+require('dotenv').config();
+const { testData } = require('../testdata');
 const { test, expect } = require('@playwright/test');
 const { SearchPage } = require('../pages/SearchPage');
 const { ProductPage } = require('../pages/ProductPage');
@@ -21,7 +23,7 @@ test.describe('Automation Exercise E2E Tests', () => {
   test('TC02 - Search for a product returns results', async ({ page }) => {
     const searchPage = new SearchPage(page);
     await page.goto('/products');
-    await searchPage.searchItem('dress');
+    await searchPage.searchItem(testData.searchTerm);
     await expect(page.locator('.title')).toContainText('Searched Products');
     const results = page.locator('.productinfo');
     await expect(results.first()).toBeVisible();
@@ -63,8 +65,8 @@ test.describe('Automation Exercise E2E Tests', () => {
 
   // Step 1: Register first
   await page.goto('/login');
-  await loginPage.signup('Test QA Engineer', fakeEmail);
-  await loginPage.registerFullAccount('SecretPassword123');
+  await loginPage.signup(testData.validUser.name, fakeEmail);
+  await loginPage.registerFullAccount(testData.validUser.password);
   await loginPage.clickContinue();
 
   // Step 2: Add product while logged in
@@ -87,8 +89,8 @@ test.describe('Automation Exercise E2E Tests', () => {
 
   test('TC06 - Invalid login shows error', async ({ page }) => {
     await page.goto('/login');
-    await page.locator('[data-qa="login-email"]').fill('wrong@email.com');
-    await page.locator('[data-qa="login-password"]').fill('wrongpassword');
+    await page.locator('[data-qa="login-email"]').fill(testData.invalidUser.email);
+    await page.locator('[data-qa="login-password"]').fill(testData.invalidUser.password);
     await page.locator('[data-qa="login-button"]').click();
     await expect(page.locator('p:has-text("Your email or password is incorrect")')).toBeVisible();
   });

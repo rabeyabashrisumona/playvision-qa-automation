@@ -7,6 +7,17 @@ NSU SQA Course Project
 This is an End-to-End (E2E) automation testing project built with **Playwright**.
 It automates and visually tests the e-commerce demo website: https://automationexercise.com
 
+
+## 🏗️ Project Architecture
+- **API Tests** — 6 tests covering GET, POST, DELETE endpoints
+- **E2E Functional Tests** — 7 tests covering full user journey
+- **Visual Regression Tests** — 5 tests with pixel-by-pixel comparison
+- **Total: 18 automated test cases**
+- **Test Data** — Centralized in `testdata.js`
+- **Environment Config** — Managed via `.env` file
+- **CI/CD** — GitHub Actions auto-runs on every push
+
+
 ## 🧪 Test Coverage
 
 ### E2E Test (`tests/automation_e2e.spec.js`)

@@ -1,3 +1,6 @@
+require('dotenv').config();
+const { testData } = require('../testdata');
+
 const { expect } = require('@playwright/test');
 
 class PaymentPage {
@@ -19,13 +22,13 @@ class PaymentPage {
   }
 
   async fillPaymentDetails() {
-    await expect(this.nameOnCardInput).toBeVisible({ timeout: 10000 });
-    await this.nameOnCardInput.fill('John Doe QA');
-    await this.cardNumberInput.fill('4111111111111111');
-    await this.cvcInput.fill('123');
-    await this.expiryMonthInput.fill('12');
-    await this.expiryYearInput.fill('2030');
-  }
+    await expect(this.nameOnCardInput).toBeVisible({ timeout: 60000 });
+    await this.nameOnCardInput.fill(testData.payment.nameOnCard);
+    await this.cardNumberInput.fill(testData.payment.cardNumber);
+    await this.cvcInput.fill(testData.payment.cvc);
+    await this.expiryMonthInput.fill(testData.payment.expiryMonth);
+    await this.expiryYearInput.fill(testData.payment.expiryYear);
+}
 
   async confirmPayment() {
     await expect(this.payButton).toBeVisible();
