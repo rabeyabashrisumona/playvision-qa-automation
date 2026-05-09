@@ -198,5 +198,3 @@ This means the test suite runs without any manual intervention on every code cha
 ## 🎯 Target Application
 
 [AutomationExercise.com](https://automationexercise.com) — A purpose-built e-commerce platform designed for automation practice, with real product listings, cart, checkout, user registration and a public REST API.
-```
-
